@@ -8,7 +8,8 @@ using MediaPortal.Common.Utils;
 // associated with an assembly.
 [assembly: AssemblyTitle("TsBufferExtractorClient")]
 [assembly: AssemblyProduct("TsBufferExtractorClient")]
-
+[assembly: AssemblyDescriptionAttribute("TsBufferExtractor.Interface")]
+[assembly: AssemblyCopyright("GNU General Public License v3")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 
 // to COM components.  If you need to access a type in this assembly from 
@@ -31,7 +32,4 @@ using MediaPortal.Common.Utils;
 [assembly: AssemblyVersion("0.4.0.0")]
 [assembly: AssemblyFileVersion("0.4.0.0")]
 [assembly: CompatibleVersion("1.7.0.0")]
-[assembly: SubsystemVersion("MP", "1.1.6.27644")]
-[assembly: SubsystemVersion("MP.Config", "1.1.6.27644")]
-[assembly: SubsystemVersion("MP.Config.DefaultSections", "1.1.6.27644")]
-[assembly: SubsystemVersion("MP.Plugins.TV", "1.1.6.27644")]
+[assembly: UsesSubsystem("MP")]

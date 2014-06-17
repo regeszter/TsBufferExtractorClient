@@ -17,7 +17,9 @@ using MediaPortal.Profile;
 
 namespace TsBufferExtractorClient
 {
-  public class TsBufferExtractorClient : IPlugin
+  [PluginIcons("TsBufferExtractorClient.TsBufferExtractorClientEnabled.bmp",
+  "TsBufferExtractorClient.TsBufferExtractorClientDisabled.bmp")]
+  public class TsBufferExtractorClient : IPlugin, ISetupForm
   {
     TsBufferExtractorInterface remoteObject = null;
     HttpChannel httpChannel = new HttpChannel();
@@ -26,7 +28,7 @@ namespace TsBufferExtractorClient
     {
       try
       {
-        ChannelServices.RegisterChannel(httpChannel);
+        ChannelServices.RegisterChannel(httpChannel, false);
       }
       catch (Exception ex)
       {
@@ -99,6 +101,30 @@ namespace TsBufferExtractorClient
 
     public bool DefaultEnabled()
     {
+      return false;
+    }
+
+    public bool CanEnable()
+    {
+      return true;
+    }
+
+    public int GetWindowId()
+    {
+      return -1;
+    }
+
+    public void ShowPlugin()
+    {
+    }
+
+    public bool GetHome(out string strButtonText, out string strButtonImage, out string strButtonImageFocus,
+                    out string strPictureImage)
+    {
+      strButtonText = string.Empty;
+      strButtonImage = string.Empty;
+      strButtonImageFocus = string.Empty;
+      strPictureImage = string.Empty;
       return false;
     }
   }

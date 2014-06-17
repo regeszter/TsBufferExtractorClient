@@ -49,12 +49,6 @@
     <Reference Include="TsBufferExtractor.Interface">
       <HintPath>..\..\TsBufferExtractor\bin\Release\TsBufferExtractor.Interface.dll</HintPath>
     </Reference>
-    <Reference Include="TvControl">
-      <HintPath>..\..\..\Program Files\Team MediaPortal\MediaPortal\TvControl.dll</HintPath>
-    </Reference>
-    <Reference Include="TvPlugin">
-      <HintPath>..\..\..\Program Files\Team MediaPortal\MediaPortal\plugins\Windows\TvPlugin.dll</HintPath>
-    </Reference>
     <Reference Include="Utils, Version=1.7.100.0, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Program Files\Team MediaPortal\MediaPortal\Utils.dll</HintPath>
@@ -63,6 +57,10 @@
   <ItemGroup>
     <Compile Include="TsBufferExtractorClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TsBufferExtractorClientDisabled.bmp" />
+    <EmbeddedResource Include="TsBufferExtractorClientEnabled.bmp" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
