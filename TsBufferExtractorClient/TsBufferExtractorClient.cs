@@ -32,7 +32,7 @@ namespace TsBufferExtractorClient
       }
       catch (Exception ex)
       {
-        Log.Error("TsBufferExtractorClient exception: {0}", ex);
+        //Log.Error("TsBufferExtractorClient exception: {0}", ex);
       }
 
       string hostName;
@@ -75,7 +75,14 @@ namespace TsBufferExtractorClient
     public void Stop()
     {
       GUIWindowManager.Receivers -= new SendMessageHandler(this.OnMessage);
-      ChannelServices.UnregisterChannel(httpChannel);
+      try
+      {
+        ChannelServices.UnregisterChannel(httpChannel);
+      }
+      catch (Exception ex)
+      {
+        //Log.Error("TsBufferExtractor exception: {0}", ex);
+      }
       Log.Debug("TsBufferExtractorClient: Stop");
     }
 
