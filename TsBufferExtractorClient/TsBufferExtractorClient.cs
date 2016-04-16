@@ -8,6 +8,7 @@ using System.Threading;
 using System.Runtime.Remoting;
 using System.Runtime.Remoting.Channels;
 using System.Runtime.Remoting.Channels.Http;
+using MediaPortal.Dialogs;
 using MediaPortal.Configuration;
 using MediaPortal.GUI.Library;
 using Action = MediaPortal.GUI.Library.Action;
@@ -19,7 +20,7 @@ namespace TsBufferExtractorClient
 {
   [PluginIcons("TsBufferExtractorClient.TsBufferExtractorClientEnabled.bmp",
   "TsBufferExtractorClient.TsBufferExtractorClientDisabled.bmp")]
-  public class TsBufferExtractorClient : IPlugin, ISetupForm
+  public class TsBufferExtractorClient : GUIInternalWindow, IPlugin, ISetupForm
   {
     TsBufferExtractorInterface remoteObject = null;
     HttpChannel httpChannel = new HttpChannel();
@@ -56,14 +57,29 @@ namespace TsBufferExtractorClient
       Log.Debug("TsBufferExtractorClient: Started");
     }
 
-    private void OnMessage(GUIMessage message)
+    public void OnMessage(GUIMessage message)
     {
       if (message.Message == GUIMessage.MessageType.GUI_MSG_MANUAL_RECORDING_STARTED)
       {
+        GUIDialogYesNo dlgYesNo = (GUIDialogYesNo)GUIWindowManager.GetWindow((int)Window.WINDOW_DIALOG_YES_NO);
+
+        if (dlgYesNo != null)
+        {
+          dlgYesNo.SetHeading("Confirm");
+          dlgYesNo.SetLine(1, "Do you want to save the timeshift buffer?");
+          dlgYesNo.TimeOut = 10;
+          dlgYesNo.DoModal(GUIWindowManager.ActiveWindow);
+          if (!dlgYesNo.IsConfirmed)
+          {
+            Log.Debug("TsBufferExtractorClient: Manual record detected, but not confirmed.");
+            return;
+          }
+        }
+        
         try
         {
           remoteObject.ManualRecordingStarted(Dns.GetHostName());
-          Log.Debug("TsBufferExtractorClient: Manual record detected.");
+          Log.Debug("TsBufferExtractorClient: Manual record detected. Msg sent to server.");
         }
         catch (Exception ex)
         {
