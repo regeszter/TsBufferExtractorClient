@@ -1,17 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
 using System.Net;
-using System.Threading;
-using System.Runtime.Remoting;
 using System.Runtime.Remoting.Channels;
 using System.Runtime.Remoting.Channels.Http;
 using MediaPortal.Dialogs;
 using MediaPortal.Configuration;
 using MediaPortal.GUI.Library;
-using Action = MediaPortal.GUI.Library.Action;
 using TsBufferExtractor.Interface;
 using MediaPortal.Profile;
 
